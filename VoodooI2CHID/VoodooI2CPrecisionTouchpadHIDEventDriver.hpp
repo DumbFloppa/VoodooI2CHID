@@ -10,6 +10,7 @@
 #define VoodooI2CPrecisionTouchpadHIDEventDriver_hpp
 
 #include <IOKit/IOLib.h>
+#include <IOKit/IOCommandGate.h>
 #include <libkern/version.h>
 #include <IOKit/IOKitKeys.h>
 #include <IOKit/IOService.h>
@@ -52,6 +53,8 @@ class EXPORT VoodooI2CPrecisionTouchpadHIDEventDriver : public VoodooI2CMultitou
     /* @inherit */
     IOReturn setPowerState(unsigned long whichState, IOService* whatDevice) override;
 
+    virtual void stop(IOService* provider) override;
+    
  protected:
     
     /*
@@ -60,7 +63,13 @@ class EXPORT VoodooI2CPrecisionTouchpadHIDEventDriver : public VoodooI2CMultitou
     IOReturn parseElements(UInt32) override;
  private:
     bool ready = false;
-
+    
+    //
+    int retry_count = 0;
+    bool retry_scheduled = false;
+    uint64_t last_retry_time = 0;
+    thread_call_t retry_call = nullptr;
+    
     /* Sends a report to the device to instruct it to enter Touchpad mode */
     void enterPrecisionTouchpadMode();
 };
