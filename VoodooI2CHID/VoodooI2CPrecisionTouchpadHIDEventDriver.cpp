@@ -32,7 +32,7 @@ void VoodooI2CPrecisionTouchpadHIDEventDriver::enterPrecisionTouchpadMode() {
     OSData *value = OSData::withBytes(inputMode, sizeof(inputMode));
     
     if (!value) {
-        IOLog("VoodooI2CHID: failed to allocate memory for input mode setDataValue");
+        IOLog("VoodooI2CHID: failed to allocate memory for input mode setDataValue\n");
         return;
     }
     
