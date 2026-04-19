@@ -52,8 +52,6 @@ class EXPORT VoodooI2CPrecisionTouchpadHIDEventDriver : public VoodooI2CMultitou
 
     /* @inherit */
     IOReturn setPowerState(unsigned long whichState, IOService* whatDevice) override;
-
-    virtual void stop(IOService* provider) override;
     
  protected:
     
@@ -62,13 +60,8 @@ class EXPORT VoodooI2CPrecisionTouchpadHIDEventDriver : public VoodooI2CMultitou
      */
     IOReturn parseElements(UInt32) override;
  private:
+    static const int kMaxRetries = 10;
     bool ready = false;
-    
-    //
-    int retry_count = 0;
-    bool retry_scheduled = false;
-    uint64_t last_retry_time = 0;
-    thread_call_t retry_call = nullptr;
     
     /* Sends a report to the device to instruct it to enter Touchpad mode */
     void enterPrecisionTouchpadMode();
