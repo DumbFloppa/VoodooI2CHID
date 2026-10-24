@@ -1,0 +1,65 @@
+name: Build VoodooI2CHID
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - precision-touchpad-wake-fix
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: precision-touchpad-wake-fix
+          submodules: recursive
+
+      - name: Check Xcode project
+        run: |
+          xcodebuild -list \
+            -project VoodooI2CHID.xcodeproj
+
+      - name: Build VoodooI2CHID
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project VoodooI2CHID.xcodeproj \
+            -target VoodooI2CHID \
+            -configuration Release \
+            -sdk macosx \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package kext
+        run: |
+          set -e
+
+          PRODUCTS="$RUNNER_TEMP/DerivedData/Build/Products"
+          KEXT=$(find "$PRODUCTS" \
+            -type d -name "VoodooI2CHID.kext" -print -quit)
+
+          if [ -z "$KEXT" ]; then
+            echo "VoodooI2CHID.kext not found"
+            find "$PRODUCTS" -maxdepth 3 -print
+            exit 1
+          fi
+
+          mkdir -p "$RUNNER_TEMP/artifacts"
+
+          ditto -c -k --sequesterRsrc --keepParent \
+            "$KEXT" \
+            "$RUNNER_TEMP/artifacts/VoodooI2CHID.zip"
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: VoodooI2CHID-kext
+          path: ${{ runner.temp }}/artifacts/VoodooI2CHID.zip
+          if-no-files-found: error
