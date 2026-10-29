@@ -34,6 +34,7 @@ jobs:
       - name: Build VoodooI2CHID
         run: |
           set -o pipefail
+          SDK_HEADERS="$GITHUB_WORKSPACE/VoodooI2C/MacKernelSDK/Headers"
           xcodebuild \
             -project VoodooI2CHID.xcodeproj \
             -scheme VoodooI2CHID \
