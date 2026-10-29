@@ -20,6 +20,12 @@ jobs:
           ref: master
           submodules: recursive
 
+      - name: Checkout MacKernelSDK
+        uses: actions/checkout@v4
+        with: 
+          repository: acidanthera/MacKernelSDK
+          path: MacKernelSDK
+
       - name: Check Xcode project
         run: |
           xcodebuild -list \
@@ -28,6 +34,9 @@ jobs:
       - name: Build VoodooI2CHID
         run: |
           set -o pipefail
+          KERNEL_EXTENSION_HEADER_SEARCH_PATHS="/Users/runner/work/VoodooI2CHID/VoodooI2CHID/MacKernelSDK/Headers"
+          KERNEL_FRAMEWORK_HEADERS="/Users/runner/work/VoodooI2CHID/VoodooI2CHID/MacKernelSDK/Headers"
+          LIBRARY_SEARCH_PATHS="/Users/runner/work/VoodooI2CHID/VoodooI2CHID/MacKernelSDK/Library/x86_64"
           xcodebuild \
             -project VoodooI2CHID.xcodeproj \
             -scheme VoodooI2CHID \
