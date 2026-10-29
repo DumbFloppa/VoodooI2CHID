@@ -9,7 +9,7 @@
 #include <IOKit/hid/IOHIDDevice.h>
 #include <kern/locks.h>
 #include "VoodooI2CHIDDevice.hpp"
-#include "../../../VoodooI2C/VoodooI2C/VoodooI2CDevice/VoodooI2CDeviceNub.hpp"
+#include "../../VoodooI2C/VoodooI2C/VoodooI2CDevice/VoodooI2CDeviceNub.hpp"
 
 #define super IOHIDDevice
 OSDefineMetaClassAndStructors(VoodooI2CHIDDevice, IOHIDDevice);
