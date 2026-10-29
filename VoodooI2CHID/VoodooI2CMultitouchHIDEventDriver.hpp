@@ -36,7 +36,7 @@
 #include "../../VoodooI2C/Multitouch Support/VoodooI2CMultitouchInterface.hpp"
 #include "../../VoodooI2C/Multitouch Support/MultitouchHelpers.hpp"
 
-#include "../../../Dependencies/helpers.hpp"
+#include "../../VoodooI2C/Dependencies/helpers.hpp"
 
 #define kHIDUsage_Dig_Confidence kHIDUsage_Dig_TouchValid
 
