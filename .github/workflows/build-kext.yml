@@ -20,6 +20,12 @@ jobs:
           ref: master
           submodules: recursive
 
+      - name: Checkout VoodooI2C
+        uses: actions/checkout@v4
+        with:
+          repository: VoodooI2C/VoodooI2C
+          path: .
+
       - name: Checkout MacKernelSDK
         uses: actions/checkout@v4
         with: 
