@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - precision-touchpad-wake-fix
+      - master
 
 permissions:
   contents: read
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
         with:
-          ref: precision-touchpad-wake-fix
+          ref: master
           submodules: recursive
 
       - name: Check Xcode project
