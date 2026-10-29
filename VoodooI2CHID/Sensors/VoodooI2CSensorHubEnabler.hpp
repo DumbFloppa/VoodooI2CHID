@@ -15,7 +15,7 @@
 
 #include <IOKit/acpi/IOACPIPlatformDevice.h>
 
-#include "../../../../Dependencies/helpers.hpp"
+#include "../../VoodooI2C/Dependencies/helpers.hpp"
 
 class EXPORT VoodooI2CSensorHubEnabler : public IOService {
   OSDeclareDefaultStructors(VoodooI2CSensorHubEnabler);
