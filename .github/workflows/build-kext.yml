@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: VoodooI2C/VoodooI2C
-          path: .
+          path: VoodooI2C
 
       - name: Checkout MacKernelSDK
         uses: actions/checkout@v4
