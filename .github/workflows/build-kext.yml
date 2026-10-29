@@ -26,6 +26,12 @@ jobs:
           repository: VoodooI2C/VoodooI2C
           path: VoodooI2C
 
+      - name: Checkout VoodooGPIO
+        uses: actions/checkout@v4
+        with:
+          repository: coolstar/VoodooGPIO
+          path: VoodooI2C/Dependencies/VoodooGPIO
+
       - name: Checkout MacKernelSDK
         uses: actions/checkout@v4
         with: 
