@@ -36,7 +36,7 @@ jobs:
           set -o pipefail
           xcodebuild \
             -project VoodooI2CHID.xcodeproj \
-            -target VoodooI2CHID \
+            -scheme VoodooI2CHID \
             -configuration Release \
             -sdk macosx \
             -derivedDataPath "$RUNNER_TEMP/DerivedData" \
