@@ -20,6 +20,12 @@ jobs:
           ref: master
           submodules: recursive
 
+      - name: Checkout MacKernelSDK
+        uses: actions/checkout@v4
+        with: 
+          repository: acidanthera/MacKernelSDK
+          path: MacKernelSDK
+
       - name: Check Xcode project
         run: |
           xcodebuild -list \
