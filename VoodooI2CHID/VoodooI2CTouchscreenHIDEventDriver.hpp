@@ -17,7 +17,7 @@
 #include <IOKit/graphics/IOFramebuffer.h>
 #include <IOKit/graphics/IODisplay.h>
 
-#include ".../../VoodooI2C/Multitouch Support/VoodooI2CDigitiserStylus.hpp"
+#include "../../VoodooI2C/Multitouch Support/VoodooI2CDigitiserStylus.hpp"
 #include "../../VoodooI2C/Multitouch Support/VoodooI2CMultitouchInterface.hpp"
 #include "../../VoodooI2C/Multitouch Support/MultitouchHelpers.hpp"
 
