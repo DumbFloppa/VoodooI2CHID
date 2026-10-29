@@ -34,9 +34,9 @@ jobs:
       - name: Build VoodooI2CHID
         run: |
           set -o pipefail
-          KERNEL_EXTENSION_HEADER_SEARCH_PATHS="/Users/runner/work/VoodooI2CHID/VoodooI2CHID/MacKernelSDK/MacKernelSDK/Headers"
-          KERNEL_FRAMEWORK_HEADERS="/Users/runner/work/VoodooI2CHID/VoodooI2CHID/MacKernelSDK/MacKernelSDK/Headers"
-          LIBRARY_SEARCH_PATHS="/Users/runner/work/VoodooI2CHID/VoodooI2CHID/MacKernelSDK/MacKernelSDK/Library/x86_64"
+          KERNEL_EXTENSION_HEADER_SEARCH_PATHS="$GITHUB_WORKSPACE/MacKernelSDK/Headers"
+          KERNEL_FRAMEWORK_HEADERS="$GITHUB_WORKSPACE/MacKernelSDK/Headers"
+          LIBRARY_SEARCH_PATHS="$GITHUB_WORKSPACE/MacKernelSDK/Library/x86_64"
           xcodebuild \
             -project VoodooI2CHID.xcodeproj \
             -scheme VoodooI2CHID \
